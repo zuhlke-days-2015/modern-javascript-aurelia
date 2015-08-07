@@ -1,5 +1,5 @@
 System.config({
-  "baseURL": "/",
+  "baseURL": "/modern-javascript-aurelia/", // user "/" on localhost
   "transpiler": "babel",
   "babelOptions": {
     "optional": [
@@ -7,7 +7,7 @@ System.config({
     ]
   },
   "paths": {
-    "*": "*.js"
+    "*": "app/*.js"
   }
 });
 
