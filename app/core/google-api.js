@@ -1,4 +1,4 @@
-export class GoogleApi {
+export default class GoogleApi {
     constructor() {}
 
     search(from, to) {

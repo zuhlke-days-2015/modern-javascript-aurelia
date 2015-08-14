@@ -6,10 +6,7 @@ import {
     Router
 }
 from 'aurelia-router';
-import {
-    GoogleApi
-}
-from '../core/google-api';
+import GoogleApi from '../core/google-api';
 
 
 export class Search {
