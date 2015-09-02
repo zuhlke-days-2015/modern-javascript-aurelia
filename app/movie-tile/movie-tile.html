@@ -1,0 +1,15 @@
+<template>
+    <figure class="movie__item__inner">
+        <div class="movie__item__inner__img">
+            <a href="${imdbUrl}">
+                <img src.bind="imageUrl" alt="" onerror="this.src='http://placehold.it/343x200'" />
+            </a>
+        </div>
+        <figcaption>
+            <h3><a href="${imdbUrl}">${title}</a>
+                </h3>
+            <p>Runtime ${runtime}
+                <br />IMDB Votes ${rating}</p>
+        </figcaption>
+    </figure>
+</template>

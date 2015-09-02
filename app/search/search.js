@@ -1,35 +1,22 @@
-import {
-    Validation
-}
-from 'aurelia-validation';
-import {
-    Router
-}
-from 'aurelia-router';
+import { inject } from 'aurelia-framework';
+import { Router } from 'aurelia-router';
 import GoogleApi from '../core/google-api';
 
-
+@inject(Router)
 export class Search {
-    static inject() {
-        return [Validation, Router, GoogleApi];
-    }
+    //ES6:
+    //static inject() {
+    //    return [Router];
+    //}
 
-    constructor(validation, router, googleApi) {
-        this.validation = validation.on(this)
-            .ensure('from')
-            .isNotEmpty()
-            .ensure('to')
-            .isNotEmpty();
-
+    constructor(router) {
         this.router = router;
-        this.googleApi = googleApi;
     }
 
     search() {
-        console.log("Search", this.from, this.to);
-        this.googleApi.search(this.from, this.to).then((result) => {
-            var duration = result.routes[0].legs[0].duration.value;
-            this.router.navigate('/movies' + '?duration=' + duration);
+        GoogleApi.search(this.from, this.to).then((result) => {
+            let duration = result.routes[0].legs[0].duration.value;
+            this.router.navigate(`/movies?duration=${duration}`);
         });
     }
 }

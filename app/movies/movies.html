@@ -1,20 +1,9 @@
 <template>
+    <require from="../movie-tile/movie-tile"></require>
     <div class="container">
         <ul class="movie">
-            <li class="movie__item" repeat.for="movie of result">
-                <figure class="movie__item__inner">
-                    <div class="movie__item__inner__img">
-                        <a href="${movie.imdbUrl}">
-                            <img src.bind="movie.omdbImgUrl" alt="" onerror="this.src='http://placehold.it/343x200'" />
-                        </a>
-                    </div>
-                    <figcaption>
-                        <h3><a href="${movie.imdbUrl}">${movie.title}</a>
-                </h3>
-                        <p>Runtime ${movie.runtimeOriginal}
-                            <br />IMDB Votes ${movie.imdbVotes}</p>
-                    </figcaption>
-                </figure>
+            <li class="movie__item" repeat.for="movie of data.movies">
+                <movie-tile imdb-url.bind="movie.imdbUrl" img-url.bind="movie.omdbImgUrl" title.bind="movie.title" runtime.bind="movie.runtimeOriginal" rating.bind="movie.imdbVotes">
             </li>
         </ul>
     </div>

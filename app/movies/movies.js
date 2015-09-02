@@ -1,35 +1,25 @@
-import {
-    Router
-}
-from 'aurelia-router';
+import { inject } from 'aurelia-framework';
+import { Router } from 'aurelia-router';
 import MovieApi from '../core/movie-api';
 
+@inject(Router)
 export class Movies {
-    static inject() {
-        return [Router, MovieApi];
-    }
+    //ES6:
+    //static inject() {
+    //    return [Router];
+    //}
 
-    constructor(route, movieApi) {
-        this.route = route;
-        this.movieApi = movieApi;
+    constructor(router) {
+        this.router = router;
     }
 
     activate(params, queryString, routeConfig) {
         if (params.duration) {
-            this.searchMovie(params.duration);
+            MovieApi
+                .searchByDuration(params.duration)
+                .then(data => this.data = data);
         } else {
             this.router.navigate('/search');
         }
-    }
-
-    searchMovie(duration) {
-        this.movieApi
-            .searchByDuration(duration)
-            .then((movies) => {
-                movies.sort(function () {
-                    return 0.5 - Math.random()
-                });
-                this.result = movies.slice(0, 9);
-            });
     }
 }

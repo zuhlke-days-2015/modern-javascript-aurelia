@@ -1,7 +1,6 @@
+/* global google */
 export default class GoogleApi {
-    constructor() {}
-
-    search(from, to) {
+    static search(from, to) {
         return new Promise(
             function (resolve, reject) {
                 var directionsService = new google.maps.DirectionsService();
